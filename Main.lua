@@ -1,5 +1,5 @@
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
-local Window = OrionLib:MakeWindow({Name = "Niksploit Hub", HidePremium = false, IntroText = "Niksploit Hub", SaveConfig = true, ConfigFolder = "Niksploit"})
+local Window = OrionLib:MakeWindow({Name = "Niksploit Hub", HidePremium = true, IntroText = "Niksploit Hub", SaveConfig = true, ConfigFolder = "Niksploithub"})
 local replicationstorage = game.ReplicatedStorage
 _G.infinjump = false
 
@@ -670,7 +670,7 @@ CombatTab:AddButton({
 	Name = "Instant Respawn",
 	Callback = function()
 		spawn(function()
-			while wait(0.2) do
+			while wait(0.1) do
 				if game:GetService("Players").LocalPlayer.NRPBS.Health.Value <= 0 and game:GetService("Players").LocalPlayer.Status.Team.Value ~= "Spectator" then
 					game:GetService("ReplicatedStorage").Events.LoadCharacter:FireServer()
 				end
@@ -714,6 +714,39 @@ GMTab:AddButton({
 			if v.Name == "Auto" then
 				v.Value = true
 			end
+		end
+  	end    
+})
+
+GMTab:AddButton({
+	Name = "FireRate",
+	Callback = function()
+		for i, v in pairs(replicationstorage.Weapons:GetDescendants()) do
+			 if v.Name == "FireRate" then
+       			v.Value = 0.025
+   			end
+		end
+  	end    
+})
+
+GMTab:AddButton({
+	Name = "Infinite Ammo",
+	Callback = function()
+		while true do
+			wait(1.3)
+			getsenv(game:GetService("Players").LocalPlayer.PlayerGui.GUI.Client.Functions.Weapons).ammocount.Value = 25
+            getsenv(game:GetService("Players").LocalPlayer.PlayerGui.GUI.Client.Functions.Weapons).ammocount.Value = 26
+		end
+  	end    
+})
+
+GMTab:AddButton({
+	Name = "Anti Over Heat",
+	Callback = function()
+		for i, v in pairs(replicationstorage.Weapons:GetDescendants()) do
+			 if v.Name == "Crit" then
+       			v.Value = 20
+   			end
 		end
   	end    
 })
@@ -809,8 +842,30 @@ VisTab:AddButton({
 	Name = "Sunglasses",
 	Callback = function()
 		 while true do 
-			wait(6) 
 			game:GetService("ReplicatedStorage").Events.Sunglasses:FireServer()
+			wait(0.4) 
 		 end
   	end    
+})
+
+local MiscTab = Window:MakeTab({
+	Name = "Misc",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+MiscTab:AddLabel("Credits To Orion Library")
+
+MiscTab:AddButton({
+	Name = "Unlock FPS",
+	Callback = function()
+		setfpscap(430)
+  	end    
+})
+
+OrionLib:MakeNotification({
+	Name = "Enjoy!",
+	Content = "Niksploit Hub Is Loaded!",
+	Image = "rbxassetid://4483345998",
+	Time = 3
 })
