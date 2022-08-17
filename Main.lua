@@ -659,6 +659,14 @@ setreadonly(MT, true)
 })
 
 CombatTab:AddButton({
+	Name = "Semi-Wallbang",
+	Callback = function()
+		local WallBangHook = loadstring(game:HttpGetAsync("https://pastebin.com/raw/3cCyS6GF"))()
+		WallBangHook:HookIndex("Clips",function()end,workspace.Map)
+  	end    
+})
+
+CombatTab:AddButton({
 	Name = "Instant Respawn",
 	Callback = function()
 		spawn(function()
@@ -736,6 +744,18 @@ LPTab:AddButton({
 })
 
 LPTab:AddToggle({
+	Name = "Third Person",
+	Default = false,
+	Callback = function(Value)
+		if Value then
+			game:GetService("Players")["LocalPlayer"].PlayerGui.GUI.Client.Variables.thirdperson.Value = true
+		else
+			game:GetService("Players")["LocalPlayer"].PlayerGui.GUI.Client.Variables.thirdperson.Value = false
+		end
+	end    
+})
+
+LPTab:AddToggle({
 	Name = "Infinite Jump",
 	Default = false,
 	Callback = function(Value)
@@ -744,6 +764,19 @@ LPTab:AddToggle({
 		else
 			uninfjump()
 		end
+	end    
+})
+
+LPTab:AddSlider({
+	Name = "FOV",
+	Min = 10,
+	Max = 120,
+	Default = game:GetService("Players").LocalPlayer.Settings.FOV.Value,
+	Color = Color3.fromRGB(255,255,255),
+	Increment = 1,
+	ValueName = "FOV",
+	Callback = function(Value)
+		game:GetService("Players").LocalPlayer.Settings.FOV.Value = Value
 	end    
 })
 
